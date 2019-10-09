@@ -8,6 +8,7 @@ import * as vscode from 'vscode';
 import { channelService } from './channels';
 import {
   CompositeParametersGatherer,
+  CompositePreconditionChecker,
   EmptyParametersGatherer,
   forceAliasList,
   forceApexClassCreate,
@@ -556,6 +557,7 @@ export async function activate(context: vscode.ExtensionContext) {
   const api: any = {
     channelService,
     CompositeParametersGatherer,
+    CompositePreconditionChecker,
     EmptyParametersGatherer,
     getDefaultUsernameOrAlias,
     getUserId,

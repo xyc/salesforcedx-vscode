@@ -6,6 +6,7 @@
  */
 
 export {
+  CompositePreconditionChecker,
   CompositeParametersGatherer,
   EmptyParametersGatherer,
   SelectFileName,
