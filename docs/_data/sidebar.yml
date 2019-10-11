@@ -67,6 +67,8 @@
   children:
     - title: Writing
       url: /articles/lwc/writing
+    - title: Testing
+      url: /articles/lwc/testing
     - title: Local Development
       url: /articles/lwc/localdev
 - title: Visualforce
