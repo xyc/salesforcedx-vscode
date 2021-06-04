@@ -1,3 +1,15 @@
+# 46.17.0 - June 3, 2021
+
+## Fixed
+
+#### salesforcedx-sobjects-faux-generator
+
+- Select sObject category ([PR #1679](https://github.com/forcedotcom/salesforcedx-vscode/pull/1679))
+
+#### salesforcedx-vscode-apex
+
+- Select sObject category ([PR #1679](https://github.com/forcedotcom/salesforcedx-vscode/pull/1679))
+
 # 46.17.0 - October 3, 2019
 
 ## Fixed
