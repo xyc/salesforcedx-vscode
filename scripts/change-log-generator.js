@@ -17,6 +17,7 @@
  * 3. Package list to ignore (comma separated list) npm run build-change-log --i package1,package2,package3
  */
 
+const githubActionsCore = require('@actions/core');
 const process = require('process');
 const shell = require('shelljs');
 const fs = require('fs');
@@ -120,7 +121,9 @@ function getReleaseBranches() {
 }
 
 function getPreviousReleaseBranch(releaseBranch) {
-  const previousReleaseOverride = getArgumentValue(PREVIOUS_RELEASE_OVERRIDE_ARG);
+  const previousReleaseOverride = getArgumentValue(
+    PREVIOUS_RELEASE_OVERRIDE_ARG
+  );
   if (previousReleaseOverride) {
     return previousReleaseOverride;
   } else {
@@ -388,6 +391,8 @@ function openPRForChanges(releaseBranch, changeLogBranch) {
   }
   const commitCommand = `git commit -a -m "chore: generated CHANGELOG for ${releaseBranch}"`;
   const pushCommand = `git push origin ${changeLogBranch}`;
+  githubActionsCore.exportVariable('RELEASE_BRANCH', releaseBranch);
+  githubActionsCore.exportVariable('CHANGELOG_BRANCH', changeLogBranch);
   shell.exec(commitCommand);
   shell.exec(pushCommand, { silent: true });
   shell.exec(

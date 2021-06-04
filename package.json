@@ -1,5 +1,6 @@
 {
   "devDependencies": {
+    "@actions/core": "^1.3.0",
     "@commitlint/cli": "^7",
     "@commitlint/config-conventional": "^7",
     "@salesforce/dev-config": "1.4.1",

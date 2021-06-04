@@ -1,0 +1,42 @@
+name: Generate changelog
+
+# Controls when the action will run.
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      next-version: # id of input
+        description: 'Next version: patch, minor, major'
+        required: true
+        default: 'minor'
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install Dependencies
+        run: npm install
+      - name: Configure GitHub
+        run: |
+          git config user.email "xchen@salesforce.com"
+          git config user.name "PDT Bot"
+      - name: Run Changelog Generator
+        run: |
+          node ./scripts/change-log-generator.js -v -t -i salesforcedx-vscode-soql -o
+      - name: Create Changelog PR
+        run: |
+          nl=$'\n' # new line
+          gh pr create --base main --title 'Changelog for release ${RELEASE_BRANCH}' --body '### What does this PR do?'"${nl}"'Changelog for release ${RELEASE_BRANCH}'
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
