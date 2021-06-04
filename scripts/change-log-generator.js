@@ -395,9 +395,11 @@ function openPRForChanges(releaseBranch, changeLogBranch) {
   githubActionsCore.exportVariable('CHANGELOG_BRANCH', changeLogBranch);
   shell.exec(commitCommand);
   shell.exec(pushCommand, { silent: true });
-  shell.exec(
-    `open "https://github.com/forcedotcom/salesforcedx-vscode/pull/new/${releaseBranch}...${changeLogBranch}"`
-  );
+
+  // TODO, set an env var
+  // shell.exec(
+  //   `open "https://github.com/forcedotcom/salesforcedx-vscode/pull/new/${releaseBranch}...${changeLogBranch}"`
+  // );
 }
 
 function writeAdditionalInfo() {
