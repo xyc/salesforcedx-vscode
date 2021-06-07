@@ -393,7 +393,7 @@ function openPRForChanges(releaseBranch, changeLogBranch) {
   const pushCommand = `git push origin ${changeLogBranch}`;
   githubActionsCore.exportVariable(
     'RELEASE_BRANCH',
-    releaseBranch.replace('origin/')
+    releaseBranch.replace('origin/', '')
   );
   githubActionsCore.exportVariable('CHANGELOG_BRANCH', changeLogBranch);
   shell.exec(commitCommand);
