@@ -391,7 +391,10 @@ function openPRForChanges(releaseBranch, changeLogBranch) {
   }
   const commitCommand = `git commit -a -m "chore: generated CHANGELOG for ${releaseBranch}"`;
   const pushCommand = `git push origin ${changeLogBranch}`;
-  githubActionsCore.exportVariable('RELEASE_BRANCH', releaseBranch);
+  githubActionsCore.exportVariable(
+    'RELEASE_BRANCH',
+    releaseBranch.replace('origin/')
+  );
   githubActionsCore.exportVariable('CHANGELOG_BRANCH', changeLogBranch);
   shell.exec(commitCommand);
   shell.exec(pushCommand, { silent: true });
