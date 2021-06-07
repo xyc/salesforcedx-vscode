@@ -37,6 +37,6 @@ jobs:
       - name: Create Changelog PR
         run: |
           nl=$'\n' # new line
-          gh pr create --base main --title 'Changelog for release ${{ env.RELEASE_BRANCH }}' --body '### What does this PR do?'"${nl}"'Changelog for release ${{ env.RELEASE_BRANCH }}'
+          gh pr create --base ${{ env.RELEASE_BRANCH }} --title 'Changelog for release ${{ env.RELEASE_BRANCH }}' --body '### What does this PR do?'"${nl}"'Changelog for release ${{ env.RELEASE_BRANCH }}'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
